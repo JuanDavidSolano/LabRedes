@@ -12,8 +12,15 @@ import java.util.ArrayList;
 
 public class FileManager {
 
+    ArrayList<String> files = new ArrayList();
+    
+    // Get all creates files
+    public ArrayList<String> getFiles() {
+        return files;
+    }
+    
     // Create File
-    public void createFile(String name, String extension, ArrayList<String> data) throws IOException {
+    public void createFile(String name, String extension, ArrayList<String> data, boolean erase) throws IOException {
         if (extension == null) {
             extension = ".txt";
         }
@@ -22,16 +29,16 @@ public class FileManager {
         f = new File(name + extension);
 
         // Create necesary objects
-        FileWriter fr = new FileWriter(f, true); // True value means dont will erase file's previous content
+        FileWriter fr = new FileWriter(f, erase); // True value means dont will erase file's previous content
         BufferedWriter bw = new BufferedWriter(fr);
         PrintWriter pw = new PrintWriter(bw);
 
         // Write data on the file
-        for (String string : data) {
-            pw.print(data);
+        for (String dato : data) {
+            pw.print(dato);
             bw.newLine();
         }
-
+        files.add(name+extension);
         // Close
         pw.close();
         bw.close();

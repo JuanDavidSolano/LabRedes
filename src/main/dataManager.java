@@ -7,25 +7,57 @@ public class dataManager {
     public ArrayList<String> generateDataWords(ArrayList<String> data) {
         ArrayList<String> dataWords = new ArrayList();
         for (String Data : data) {
-            if (Data.length() == 16) {
-
-            }
+            dataWords.add(this.string2bin(Data));
         }
+
+        dataWords = separarBits(dataWords);
         return dataWords;
     }
 
     public String string2bin(String data) {
         StringBuilder bin = new StringBuilder();
-
         char[] chars = data.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            if (Integer.toBinaryString((int) chars[i]).length() < 8) {
-                bin.append("0" + Integer.toBinaryString((int) chars[i]));
-            }else{
-                bin.append(Integer.toBinaryString((int) chars[i]));
+            StringBuilder zeros = new StringBuilder();
+            int size = Integer.toBinaryString((int) chars[i]).length();
+            for (int j = 0; j < 8 - size; j++) {
+                zeros.append("0");
             }
-            
+            bin.append(zeros).append(Integer.toBinaryString((int) chars[i]));
         }
         return bin.toString();
+    }
+
+    public ArrayList<String> separarBits(ArrayList<String> dataWords) {
+        ArrayList<String> separateWords = new ArrayList();
+        ArrayList<String> DataWords = new ArrayList();
+        for (String DataWord : dataWords) {
+            for (int i = 0; i < DataWord.length(); i = i + 8) {
+                separateWords.add(DataWord.substring(i, i + 8));
+            }
+        }
+
+        /* 
+            Esta variable me dice cuantos caracteres van a sobrar, es decir que 
+            se quedan por fuera de los grupos de 16 caracteres 
+         */
+        int caracteresRestantes = separateWords.size() % 16;
+        /*
+            Esta variable me dice cual es el maximo indice al cual debo llegar 
+            para tener todos mis grupos de 16 caracteres completos
+         */
+        int limiteSup = separateWords.size() - caracteresRestantes;
+        for (int i = 0; i < limiteSup; i = i + 16) {
+            StringBuilder dataWord = new StringBuilder();
+            for (int j = i; j < i + 16; j++) {
+                dataWord.append(separateWords.get(j));
+            }
+            DataWords.add(dataWord.toString());
+        }
+        for (int i = limiteSup - 1; i < caracteresRestantes; i++) {
+
+        }
+
+        return DataWords;
     }
 }

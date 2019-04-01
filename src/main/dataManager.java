@@ -47,6 +47,10 @@ public class dataManager {
             para tener todos mis grupos de 16 caracteres completos
          */
         int limiteSup = separateWords.size() - caracteresRestantes;
+
+        /*
+            Este primer ciclo saca todos los grupos completos de 16 caracteres
+         */
         for (int i = 0; i < limiteSup; i = i + 16) {
             StringBuilder dataWord = new StringBuilder();
             for (int j = i; j < i + 16; j++) {
@@ -54,9 +58,15 @@ public class dataManager {
             }
             DataWords.add(dataWord.toString());
         }
-        for (int i = limiteSup - 1; i < caracteresRestantes; i++) {
+        StringBuilder dataWord = new StringBuilder();
 
+        /*
+            Este segundo ciclo saca la palabra de datos restante
+         */
+        for (int j = limiteSup; j < separateWords.size(); j++) {
+            dataWord.append(separateWords.get(j));
         }
+        DataWords.add(dataWord.toString());
 
         return DataWords;
     }

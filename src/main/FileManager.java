@@ -10,11 +10,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/*
+    El fileManager se encarga de la Lectura y Escritura de cualquier archivo
+    que sea requerido.
+*/
+
 public class FileManager {
 
     ArrayList<String> files = new ArrayList();
     
-    // Get all creates files
+    // Get all created files
     public ArrayList<String> getFiles() {
         return files;
     }

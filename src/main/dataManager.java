@@ -2,6 +2,12 @@ package main;
 
 import java.util.ArrayList;
 
+/*
+    El dataManager contiene y se encarga de todas las operaciones con datos y se las envia
+    a quien requiera.
+*/
+
+
 public class dataManager {
 
     ArrayList<String> dataWords;
@@ -23,6 +29,10 @@ public class dataManager {
         this.codeWords = codeWords;
     }
 
+    /*
+        Este metodo recibe las DataWords y las pasa a el contador de 1s (unos)
+        segun el resultado evalua si se debe agregar un (1) o un (0).
+     */
     public ArrayList<String> generateCodeWords(ArrayList<String> dataWords) {
         ArrayList<String> codeWords = new ArrayList();
         for (String dataWord : dataWords) {
@@ -39,6 +49,11 @@ public class dataManager {
         return codeWords;
     }
 
+    /*
+        Este metodo cuenta la cantidad de 1s (unos) en la palabra de datos,
+        esto lo hace dividiendo la palabra en caracteres y revisando cada uno
+        dentro del vector.
+     */
     public int count1s(String dataWord) {
         int cont = 0;
         char[] chars = dataWord.toCharArray();
@@ -51,6 +66,11 @@ public class dataManager {
         return cont;
     }
 
+    /*
+        Este metodo genera las DataWords con base en un mensaje recibido,
+        esto lo hace pasando cada mensaje a el decodificador en ASCII y luego 
+        separando los bits para obtener las palabras de datos de 128 bits.
+     */
     public ArrayList<String> generateDataWords(ArrayList<String> data) {
         ArrayList<String> DataWords = new ArrayList();
         for (String Data : data) {
@@ -60,7 +80,10 @@ public class dataManager {
         DataWords = separarBits(DataWords);
         return DataWords;
     }
-
+    
+    /*
+        Este metodo convierte el String recibido a su respectivo codigo ASCII.
+    */
     public String string2bin(String data) {
         StringBuilder bin = new StringBuilder();
         char[] chars = data.toCharArray();
@@ -68,13 +91,21 @@ public class dataManager {
             StringBuilder zeros = new StringBuilder();
             int size = Integer.toBinaryString((int) chars[i]).length();
             for (int j = 0; j < 8 - size; j++) {
+                /*
+                    Debido a que los (0) ceros a la izquierda son eliminados, 
+                    este ciclo agrega los ceros (0) faltantes para que la 
+                    longitud de cada binario sea de 8 bits
+                */
                 zeros.append("0");
             }
             bin.append(zeros).append(Integer.toBinaryString((int) chars[i]));
         }
         return bin.toString();
     }
-
+    
+    /*
+        Este metodo separa los bits en grupos de 128 bits cada uno.
+    */
     public ArrayList<String> separarBits(ArrayList<String> dataWords) {
         ArrayList<String> separateWords = new ArrayList();
         ArrayList<String> DataWords = new ArrayList();

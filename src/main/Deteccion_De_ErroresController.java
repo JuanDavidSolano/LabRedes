@@ -29,8 +29,10 @@ public class Deteccion_De_ErroresController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("Hello world!");
+
         ArrayList<String> data = new ArrayList();
         data.add("Hola, mi nombre es");
+
         FileManager fm = new FileManager();
         try {
             fm.createFile("msj_1", ".txt", data, false);
@@ -41,7 +43,7 @@ public class Deteccion_De_ErroresController implements Initializable {
         dataManager dm = new dataManager();
         dm.setDataWords(dm.generateDataWords(data));
         dm.setCodeWords(dm.generateCodeWords(dm.getDataWords()));
-        
+
         try {
             fm.createFile("msj_1", ".btp", dm.getCodeWords(), true);
         } catch (IOException ex) {

@@ -41,6 +41,12 @@ public class Deteccion_De_ErroresController implements Initializable {
         dataManager dm = new dataManager();
         dm.setDataWords(dm.generateDataWords(data));
         dm.setCodeWords(dm.generateCodeWords(dm.getDataWords()));
+        
+        try {
+            fm.createFile("msj_1", ".btp", dm.getCodeWords(), true);
+        } catch (IOException ex) {
+            System.out.println("Error en la creacion de el archivo de palabras de codigo");
+        }
     }
 
 }

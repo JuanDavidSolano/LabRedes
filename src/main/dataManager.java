@@ -4,14 +4,61 @@ import java.util.ArrayList;
 
 public class dataManager {
 
-    public ArrayList<String> generateDataWords(ArrayList<String> data) {
-        ArrayList<String> dataWords = new ArrayList();
-        for (String Data : data) {
-            dataWords.add(this.string2bin(Data));
+    ArrayList<String> dataWords;
+    ArrayList<String> codeWords;
+
+    public ArrayList<String> getDataWords() {
+        return dataWords;
+    }
+
+    public void setDataWords(ArrayList<String> dataWords) {
+        this.dataWords = dataWords;
+    }
+
+    public ArrayList<String> getCodeWords() {
+        return codeWords;
+    }
+
+    public void setCodeWords(ArrayList<String> codeWords) {
+        this.codeWords = codeWords;
+    }
+
+    public ArrayList<String> generateCodeWords(ArrayList<String> dataWords) {
+        ArrayList<String> codeWords = new ArrayList();
+        for (String dataWord : dataWords) {
+            StringBuilder codeWord = new StringBuilder();
+            int count = count1s(dataWord);
+            if (count % 2 == 0) {
+                codeWord.append(dataWord).append("0");
+            } else {
+                codeWord.append(dataWord).append("1");
+            }
+            codeWords.add(codeWord.toString());
         }
 
-        dataWords = separarBits(dataWords);
-        return dataWords;
+        return codeWords;
+    }
+
+    public int count1s(String dataWord) {
+        int cont = 0;
+        char[] chars = dataWord.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == '1') {
+                cont++;
+            }
+        }
+
+        return cont;
+    }
+
+    public ArrayList<String> generateDataWords(ArrayList<String> data) {
+        ArrayList<String> DataWords = new ArrayList();
+        for (String Data : data) {
+            DataWords.add(this.string2bin(Data));
+        }
+
+        DataWords = separarBits(DataWords);
+        return DataWords;
     }
 
     public String string2bin(String data) {

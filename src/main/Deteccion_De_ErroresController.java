@@ -1,10 +1,11 @@
-
 package main;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,12 +35,12 @@ public class Deteccion_De_ErroresController implements Initializable {
         try {
             fm.createFile("msj_1", ".txt", data, false);
         } catch (IOException ex) {
-            System.out.println("Error en creacion de archivo");
+            System.out.println("Error en creacion de archivo de mensaje");
         }
 
         dataManager dm = new dataManager();
-        System.out.println(dm.generateDataWords(data));
-
+        dm.setDataWords(dm.generateDataWords(data));
+        dm.setCodeWords(dm.generateCodeWords(dm.getDataWords()));
     }
 
 }

@@ -5,9 +5,7 @@ import java.util.ArrayList;
 /*
     El dataManager contiene y se encarga de todas las operaciones con datos y se las envia
     a quien requiera.
-*/
-
-
+ */
 public class dataManager {
 
     ArrayList<String> dataWords;
@@ -71,19 +69,19 @@ public class dataManager {
         esto lo hace pasando cada mensaje a el decodificador en ASCII y luego 
         separando los bits para obtener las palabras de datos de 128 bits.
      */
-    public ArrayList<String> generateDataWords(ArrayList<String> data) {
+    public ArrayList<String> generateDataWords(ArrayList<String> data, int longitud) {
         ArrayList<String> DataWords = new ArrayList();
         for (String Data : data) {
             DataWords.add(this.string2bin(Data));
         }
 
-        DataWords = separarBits(DataWords);
+        DataWords = separarBits(DataWords, longitud);
         return DataWords;
     }
-    
+
     /*
         Este metodo convierte el String recibido a su respectivo codigo ASCII.
-    */
+     */
     public String string2bin(String data) {
         StringBuilder bin = new StringBuilder();
         char[] chars = data.toCharArray();
@@ -95,18 +93,18 @@ public class dataManager {
                     Debido a que los (0) ceros a la izquierda son eliminados, 
                     este ciclo agrega los ceros (0) faltantes para que la 
                     longitud de cada binario sea de 8 bits
-                */
+                 */
                 zeros.append("0");
             }
             bin.append(zeros).append(Integer.toBinaryString((int) chars[i]));
         }
         return bin.toString();
     }
-    
+
     /*
         Este metodo separa los bits en grupos de 128 bits cada uno.
-    */
-    public ArrayList<String> separarBits(ArrayList<String> dataWords) {
+     */
+    public ArrayList<String> separarBits(ArrayList<String> dataWords, int longitud) {
         ArrayList<String> separateWords = new ArrayList();
         ArrayList<String> DataWords = new ArrayList();
         for (String DataWord : dataWords) {
@@ -119,7 +117,7 @@ public class dataManager {
             Esta variable me dice cuantos caracteres van a sobrar, es decir que 
             se quedan por fuera de los grupos de 16 caracteres 
          */
-        int caracteresRestantes = separateWords.size() % 16;
+        int caracteresRestantes = separateWords.size() % longitud;
         /*
             Esta variable me dice cual es el maximo indice al cual debo llegar 
             para tener todos mis grupos de 16 caracteres completos
@@ -129,9 +127,9 @@ public class dataManager {
         /*
             Este primer ciclo saca todos los grupos completos de 16 caracteres
          */
-        for (int i = 0; i < limiteSup; i = i + 16) {
+        for (int i = 0; i < limiteSup; i = i + longitud) {
             StringBuilder dataWord = new StringBuilder();
-            for (int j = i; j < i + 16; j++) {
+            for (int j = i; j < i + longitud; j++) {
                 dataWord.append(separateWords.get(j));
             }
             DataWords.add(dataWord.toString());

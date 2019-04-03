@@ -12,7 +12,7 @@
     <children>
       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="80.0" styleClass="sidebar">
          <children>
-            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" styleClass="parent">
+            <HBox fx:id="home" alignment="CENTER" prefHeight="80.0" prefWidth="200.0" styleClass="parent">
                <children>
                   <ImageView fx:id="button" fitHeight="64.0" fitWidth="64.0" onMouseClicked="#test" pickOnBounds="true" smooth="false">
                      <image>
@@ -21,7 +21,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+            <HBox fx:id="detect" alignment="CENTER" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
                      <image>
@@ -30,7 +30,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="90.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+            <HBox fx:id="fix" alignment="CENTER" layoutX="10.0" layoutY="90.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
                      <image>
@@ -39,7 +39,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="160.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+            <HBox fx:id="create" alignment="CENTER" layoutX="10.0" layoutY="160.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
                      <image>
@@ -48,7 +48,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="231.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+            <HBox fx:id="files" alignment="CENTER" layoutX="10.0" layoutY="231.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
                      <image>
@@ -59,7 +59,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" />
             <HBox prefHeight="100.0" prefWidth="200.0" />
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="301.0" prefHeight="70.0" prefWidth="80.0" styleClass="exit">
+            <HBox fx:id="exit" alignment="CENTER" layoutX="10.0" layoutY="301.0" prefHeight="70.0" prefWidth="80.0" styleClass="exit">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
                      <image>
@@ -88,6 +88,11 @@
       <Label layoutX="260.0" layoutY="393.0" prefHeight="43.0" prefWidth="358.0" text="Miguel Antonio Julio Diaz" textFill="WHITE">
          <font>
             <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="241.0" layoutY="553.0" prefHeight="43.0" prefWidth="396.0" text="Source code at: https://github.com/JuanDavidSolano/LabRedes" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
          </font>
       </Label>
     </children>

@@ -21,13 +21,7 @@ import javafx.scene.layout.HBox;
 public class Deteccion_De_ErroresController implements Initializable {
 
     @FXML
-    private Label label;
-
-    @FXML
     private AnchorPane prueba;
-
-    @FXML
-    private ImageView button;
 
     @FXML
     private HBox home;
@@ -43,8 +37,79 @@ public class Deteccion_De_ErroresController implements Initializable {
     private HBox exit;
 
     @FXML
-    void test(MouseEvent event) {
-        prueba.setVisible(true);
+    void home(MouseEvent event) {
+        home.getStyleClass().removeAll("buttons");
+        home.getStyleClass().add("parent");
+        detect.getStyleClass().removeAll("parent");
+        detect.getStyleClass().add("buttons");
+        fix.getStyleClass().removeAll("parent");
+        fix.getStyleClass().add("buttons");
+        create.getStyleClass().removeAll("parent");
+        create.getStyleClass().add("buttons");
+        files.getStyleClass().removeAll("parent");
+        files.getStyleClass().add("buttons");
+    }
+
+    @FXML
+    void detect(MouseEvent event) {
+        home.getStyleClass().removeAll("parent");
+        home.getStyleClass().add("buttons");
+        detect.getStyleClass().removeAll("buttons");
+        detect.getStyleClass().add("parent");
+        fix.getStyleClass().removeAll("parent");
+        fix.getStyleClass().add("buttons");
+        create.getStyleClass().removeAll("parent");
+        create.getStyleClass().add("buttons");
+        files.getStyleClass().removeAll("parent");
+        files.getStyleClass().add("buttons");
+    }
+
+    @FXML
+    void fix(MouseEvent event) {
+        System.out.println("asds");
+        home.getStyleClass().removeAll("parent");
+        home.getStyleClass().add("buttons");
+        detect.getStyleClass().removeAll("parent");
+        detect.getStyleClass().add("buttons");
+        fix.getStyleClass().removeAll("buttons");
+        fix.getStyleClass().add("parent");
+        create.getStyleClass().removeAll("parent");
+        create.getStyleClass().add("buttons");
+        files.getStyleClass().removeAll("parent");
+        files.getStyleClass().add("buttons");
+    }
+
+    @FXML
+    void create(MouseEvent event) {
+        home.getStyleClass().removeAll("parent");
+        home.getStyleClass().add("buttons");
+        detect.getStyleClass().removeAll("parent");
+        detect.getStyleClass().add("buttons");
+        fix.getStyleClass().removeAll("parent");
+        fix.getStyleClass().add("buttons");
+        create.getStyleClass().removeAll("buttons");
+        create.getStyleClass().add("parent");
+        files.getStyleClass().removeAll("parent");
+        files.getStyleClass().add("buttons");
+    }
+
+    @FXML
+    void view(MouseEvent event) {
+        home.getStyleClass().removeAll("parent");
+        home.getStyleClass().add("buttons");
+        detect.getStyleClass().removeAll("parent");
+        detect.getStyleClass().add("buttons");
+        fix.getStyleClass().removeAll("parent");
+        fix.getStyleClass().add("buttons");
+        create.getStyleClass().removeAll("parent");
+        create.getStyleClass().add("buttons");
+        files.getStyleClass().removeAll("buttons");
+        files.getStyleClass().add("parent");
+    }
+
+    @FXML
+    void exit(MouseEvent event) {
+        System.exit(0);
     }
 
     @Override

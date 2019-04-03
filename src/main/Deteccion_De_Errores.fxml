@@ -12,16 +12,16 @@
     <children>
       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="80.0" styleClass="sidebar">
          <children>
-            <HBox fx:id="home" alignment="CENTER" prefHeight="80.0" prefWidth="200.0" styleClass="parent">
+            <HBox fx:id="home" alignment="CENTER" onMouseClicked="#home" prefHeight="80.0" prefWidth="200.0" styleClass="parent">
                <children>
-                  <ImageView fx:id="button" fitHeight="64.0" fitWidth="64.0" onMouseClicked="#test" pickOnBounds="true" smooth="false">
+                  <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" smooth="false">
                      <image>
                         <Image url="@icons/logo.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
-            <HBox fx:id="detect" alignment="CENTER" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+            <HBox fx:id="detect" alignment="CENTER" onMouseClicked="#detect" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
                      <image>
@@ -30,7 +30,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox fx:id="fix" alignment="CENTER" layoutX="10.0" layoutY="90.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+            <HBox fx:id="fix" alignment="CENTER" layoutX="10.0" layoutY="90.0" onMouseClicked="#fix" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
                      <image>
@@ -39,7 +39,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox fx:id="create" alignment="CENTER" layoutX="10.0" layoutY="160.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+            <HBox fx:id="create" alignment="CENTER" layoutX="10.0" layoutY="160.0" onMouseClicked="#create" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
                      <image>
@@ -48,7 +48,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox fx:id="files" alignment="CENTER" layoutX="10.0" layoutY="231.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+            <HBox fx:id="files" alignment="CENTER" layoutX="10.0" layoutY="231.0" onMouseClicked="#view" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
                      <image>
@@ -59,7 +59,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" />
             <HBox prefHeight="100.0" prefWidth="200.0" />
-            <HBox fx:id="exit" alignment="CENTER" layoutX="10.0" layoutY="301.0" prefHeight="70.0" prefWidth="80.0" styleClass="exit">
+            <HBox fx:id="exit" alignment="CENTER" layoutX="10.0" layoutY="301.0" onMouseClicked="#exit" prefHeight="70.0" prefWidth="80.0" styleClass="exit">
                <children>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
                      <image>

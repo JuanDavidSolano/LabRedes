@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -21,14 +22,18 @@ public class Deteccion_De_ErroresController implements Initializable {
     private Label label;
 
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private AnchorPane prueba;
+
+    @FXML
+    private ImageView button;
+
+    @FXML
+    void test(MouseEvent event) {
+        prueba.setVisible(true);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Hello world!");
 
         ArrayList<String> data = new ArrayList();
         data.add("Hola, mi nombre es");

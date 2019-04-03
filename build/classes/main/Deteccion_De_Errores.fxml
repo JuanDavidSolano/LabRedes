@@ -1,14 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Deteccion_De_ErroresController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Deteccion_De_ErroresController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+      <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="80.0" styleClass="sidebar">
+         <children>
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" styleClass="parent">
+               <children>
+                  <ImageView fx:id="button" fitHeight="64.0" fitWidth="64.0" onMouseClicked="#test" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@icons/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@icons/detect.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="90.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@icons/fix.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="160.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@icons/editFile.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="231.0" prefHeight="70.0" prefWidth="80.0" styleClass="buttons">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@icons/openFIle.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="301.0" prefHeight="70.0" prefWidth="80.0" styleClass="exit">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@icons/exit.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children></VBox>
+      <AnchorPane fx:id="prueba" layoutX="79.0" prefHeight="611.0" prefWidth="721.0" visible="false" />
+      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="779.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/close.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="315.0" fitWidth="368.0" layoutX="282.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/Logo-Uninorte.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="276.0" layoutY="334.0" prefHeight="43.0" prefWidth="331.0" text="Juan David Solano Silva" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="260.0" layoutY="393.0" prefHeight="43.0" prefWidth="358.0" text="Miguel Antonio Julio Diaz" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

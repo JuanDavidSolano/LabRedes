@@ -13,19 +13,17 @@ import java.util.ArrayList;
 /*
     El fileManager se encarga de la Lectura y Escritura de cualquier archivo
     que sea requerido.
-*/
-
+ */
 public class FileManager {
 
-    ArrayList<String> files = new ArrayList();
-    
     // Get all created files
-    public ArrayList<String> getFiles() {
-        return files;
+    public ArrayList<String> getFiles() throws IOException {
+        return readFile("files", ".f");
     }
-    
+
     // Create File
     public void createFile(String name, String extension, ArrayList<String> data, boolean erase) throws IOException {
+        ArrayList<String> files = new ArrayList();
         if (extension == null) {
             extension = ".txt";
         }
@@ -43,7 +41,14 @@ public class FileManager {
             pw.print(dato);
             bw.newLine();
         }
-        files.add(name+extension);
+        if (!name.equals("files")) {
+            System.out.println("SEXO");
+            files = readFile("files", ".f");
+            files.add(name + extension);
+            createFile("files", ".f", files, false);
+        }
+        
+        
         // Close
         pw.close();
         bw.close();

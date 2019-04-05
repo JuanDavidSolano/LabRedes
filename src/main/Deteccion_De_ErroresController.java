@@ -1,5 +1,8 @@
 package main;
 
+import com.jfoenix.controls.JFXButton;
+
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,10 +12,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javax.swing.Timer;
 
 /**
  *
@@ -20,8 +23,23 @@ import javafx.scene.layout.HBox;
  */
 public class Deteccion_De_ErroresController implements Initializable {
 
+    FileManager fm = new FileManager();
+
     @FXML
-    private AnchorPane prueba;
+    private AnchorPane deteccion;
+    @FXML
+    private AnchorPane correccion;
+    @FXML
+    private AnchorPane creacion;
+    @FXML
+    private AnchorPane visualizacion;
+
+    @FXML
+    private AnchorPane loader;
+    @FXML
+    private AnchorPane loader1;
+    @FXML
+    private AnchorPane loader2;
 
     @FXML
     private HBox home;
@@ -37,6 +55,14 @@ public class Deteccion_De_ErroresController implements Initializable {
     private HBox exit;
 
     @FXML
+    private JFXButton detectar;
+    @FXML
+    private JFXButton validar1;
+
+    @FXML
+    private Label fileList;
+
+    @FXML
     void home(MouseEvent event) {
         home.getStyleClass().removeAll("buttons");
         home.getStyleClass().add("parent");
@@ -48,6 +74,11 @@ public class Deteccion_De_ErroresController implements Initializable {
         create.getStyleClass().add("buttons");
         files.getStyleClass().removeAll("parent");
         files.getStyleClass().add("buttons");
+
+        deteccion.setVisible(false);
+        correccion.setVisible(false);
+        creacion.setVisible(false);
+        visualizacion.setVisible(false);
     }
 
     @FXML
@@ -62,11 +93,15 @@ public class Deteccion_De_ErroresController implements Initializable {
         create.getStyleClass().add("buttons");
         files.getStyleClass().removeAll("parent");
         files.getStyleClass().add("buttons");
+        deteccion.setVisible(true);
+        correccion.setVisible(false);
+        creacion.setVisible(false);
+        visualizacion.setVisible(false);
+
     }
 
     @FXML
     void fix(MouseEvent event) {
-        System.out.println("asds");
         home.getStyleClass().removeAll("parent");
         home.getStyleClass().add("buttons");
         detect.getStyleClass().removeAll("parent");
@@ -77,6 +112,11 @@ public class Deteccion_De_ErroresController implements Initializable {
         create.getStyleClass().add("buttons");
         files.getStyleClass().removeAll("parent");
         files.getStyleClass().add("buttons");
+
+        deteccion.setVisible(false);
+        correccion.setVisible(true);
+        creacion.setVisible(false);
+        visualizacion.setVisible(false);
     }
 
     @FXML
@@ -91,6 +131,10 @@ public class Deteccion_De_ErroresController implements Initializable {
         create.getStyleClass().add("parent");
         files.getStyleClass().removeAll("parent");
         files.getStyleClass().add("buttons");
+        deteccion.setVisible(false);
+        correccion.setVisible(false);
+        creacion.setVisible(true);
+        visualizacion.setVisible(false);
     }
 
     @FXML
@@ -105,11 +149,35 @@ public class Deteccion_De_ErroresController implements Initializable {
         create.getStyleClass().add("buttons");
         files.getStyleClass().removeAll("buttons");
         files.getStyleClass().add("parent");
+        deteccion.setVisible(false);
+        correccion.setVisible(false);
+        creacion.setVisible(false);
+        visualizacion.setVisible(true);
     }
 
     @FXML
     void exit(MouseEvent event) {
         System.exit(0);
+    }
+
+    animationController ac = new animationController();
+
+    @FXML
+    void validate(ActionEvent event) {
+        ac.animation(loader, detectar);
+    }
+
+    @FXML
+    void actualizar(ActionEvent event) throws IOException {
+        ArrayList Files = fm.getFiles();
+        System.out.println(Files);
+        StringBuilder text = new StringBuilder();
+        
+        for (Object File : Files) {
+            text.append("(-) ").append(File).append("\n");
+        }
+        
+        fileList.setText(text.toString());
     }
 
     @Override
@@ -123,11 +191,11 @@ public class Deteccion_De_ErroresController implements Initializable {
         Tooltip.install(exit, (new Tooltip("Salir")));
 
         ArrayList<String> data = new ArrayList();
-        data.add("Hola, mi nombre es");
+        data.add("Hola, mi nombre es karla");
 
         FileManager fm = new FileManager();
         try {
-            fm.createFile("msj_1", ".txt", data, false);
+            fm.createFile("msj_3", ".txt", data, false);
         } catch (IOException ex) {
             System.out.println("Error en creacion de archivo de mensaje");
         }
@@ -137,7 +205,7 @@ public class Deteccion_De_ErroresController implements Initializable {
         dm.setCodeWords(dm.generateCodeWords(dm.getDataWords()));
 
         try {
-            fm.createFile("msj_1", ".btp", dm.getCodeWords(), false);
+            fm.createFile("msj_3", ".btp", dm.getCodeWords(), false);
         } catch (IOException ex) {
             System.out.println("Error en la creacion de el archivo de palabras de codigo");
         }

@@ -94,8 +94,13 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="deteccion" layoutX="79.0" prefHeight="610.0" prefWidth="721.0" styleClass="parent" stylesheets="@style.css" visible="false">
+      <AnchorPane fx:id="deteccion" layoutX="79.0" prefHeight="610.0" prefWidth="721.0" styleClass="parent" stylesheets="@style.css">
          <children>
+            <JFXTextField fx:id="Archivo1" focusColor="#2a4b80" layoutX="175.0" layoutY="77.0"  prefHeight="42.0" prefWidth="233.0" promptText="Nombre_del_archivo.btp" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="#002453">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </JFXTextField>
             <AnchorPane fx:id="loader" layoutX="208.0" layoutY="245.0" prefHeight="245.0" prefWidth="262.0" visible="false">
                <children>
                   <JFXSpinner layoutX="76.0" layoutY="75.0" prefHeight="147.0" prefWidth="162.0" radius="50.0" startingAngle="-150.0">
@@ -142,22 +147,17 @@
                   </JFXSpinner>
                </children>
             </AnchorPane>
-            <JFXTextField focusColor="#2a4b80" layoutX="203.0" layoutY="73.0" prefHeight="0.0" prefWidth="192.0" promptText="Nombre del archivo" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="#002453">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </JFXTextField>
             <JFXButton fx:id="validar1" layoutX="415.0" layoutY="77.0" onAction="#validate" prefHeight="42.0" prefWidth="104.0" style="-fx-background-color: #002453;" text="Validar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
-            <Label layoutX="77.0" layoutY="149.0" prefHeight="43.0" prefWidth="567.0" text="Porfavor escriba el nombre del archivo que desea usar." textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="mensaje1" layoutX="77.0" layoutY="149.0" prefHeight="43.0" prefWidth="567.0" text="Porfavor escriba el nombre del archivo que desea usar." textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <Label fx:id="mensaje1" layoutX="77.0" layoutY="245.0" prefHeight="306.0" prefWidth="567.0" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="77.0" layoutY="245.0" prefHeight="306.0" prefWidth="567.0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>

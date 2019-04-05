@@ -21,8 +21,7 @@ public class animationController {
     int k = 0;
     Timer t;
 
-    void animation(AnchorPane loader, JFXButton boton) {
-        loader.setVisible(true);
+    void animation(AnchorPane loader) {
         k = 0;
         t = new Timer(1000, new ActionListener() {
             @Override
@@ -30,7 +29,6 @@ public class animationController {
                 k++;
                 if (k==5) {
                     t.stop();
-                    boton.setDisable(false);
                     loader.setVisible(false);
                 }
             }

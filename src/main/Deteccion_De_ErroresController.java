@@ -1,17 +1,21 @@
 package main;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -61,6 +65,11 @@ public class Deteccion_De_ErroresController implements Initializable {
 
     @FXML
     private Label fileList;
+    @FXML
+    private Label mensaje1;
+
+    @FXML
+    private JFXTextField Archivo1;
 
     @FXML
     void home(MouseEvent event) {
@@ -163,20 +172,35 @@ public class Deteccion_De_ErroresController implements Initializable {
     animationController ac = new animationController();
 
     @FXML
-    void validate(ActionEvent event) {
-        ac.animation(loader, detectar);
+    void validate(ActionEvent event) throws IOException {
+        ArrayList Files = fm.getFiles();
+        if (!(Archivo1.getText().contains(".btp"))) {
+            mensaje1.setText("Este arhivo no es valido, porfavor use .btp.");
+            mensaje1.setStyle("-fx-text-fill: #B22222");
+        } else {
+            if (Files.contains(Archivo1.getText())) {
+                mensaje1.setText("Archivo existente");
+                mensaje1.setStyle("-fx-text-fill: #2BFF00");
+                detectar.setDisable(false);
+            } else {
+                mensaje1.setText("Este arhivo no existe, porfavor creelo o corrigalo.");
+                mensaje1.setStyle("-fx-text-fill:#B22222");
+            }
+        }
+
     }
+
 
     @FXML
     void actualizar(ActionEvent event) throws IOException {
         ArrayList Files = fm.getFiles();
         System.out.println(Files);
         StringBuilder text = new StringBuilder();
-        
+
         for (Object File : Files) {
             text.append("(-) ").append(File).append("\n");
         }
-        
+
         fileList.setText(text.toString());
     }
 
@@ -189,6 +213,15 @@ public class Deteccion_De_ErroresController implements Initializable {
         Tooltip.install(create, (new Tooltip("Crear archivo")));
         Tooltip.install(files, (new Tooltip("Ver archivos disponibles")));
         Tooltip.install(exit, (new Tooltip("Salir")));
+
+        Archivo1.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                mensaje1.setText("Porfavor escriba el nombre del archivo que desea usar.");
+                detectar.setDisable(true);
+                mensaje1.setStyle("-fx-text-fill:#ffffff");
+            }
+        });
 
         ArrayList<String> data = new ArrayList();
         data.add("Hola, mi nombre es karla");

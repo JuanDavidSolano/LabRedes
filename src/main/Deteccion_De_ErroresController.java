@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -28,6 +30,7 @@ import javax.swing.Timer;
 public class Deteccion_De_ErroresController implements Initializable {
 
     FileManager fm = new FileManager();
+    dataManager dm = new dataManager();
 
     @FXML
     private AnchorPane deteccion;
@@ -67,6 +70,8 @@ public class Deteccion_De_ErroresController implements Initializable {
     private Label fileList;
     @FXML
     private Label mensaje1;
+    @FXML
+    private Label resultado;
 
     @FXML
     private JFXTextField Archivo1;
@@ -170,26 +175,73 @@ public class Deteccion_De_ErroresController implements Initializable {
     }
 
     animationController ac = new animationController();
+    
+    int k = 0;
+    Timer t;
 
     @FXML
     void validate(ActionEvent event) throws IOException {
+        System.out.println(Archivo1.getText());
+        loader.setVisible(true);
+        k = 0;
+        t = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                k++;
+                if (k == 5) {
+                    loader.setVisible(false);
+                    t.stop();
+                }
+            }
+        });
+        t.start();
+
+        //ac.animation(this, loader);
+    }
+
+    void prueba() throws IOException {
         ArrayList Files = fm.getFiles();
+        System.out.println(mensaje1.getText());
         if (!(Archivo1.getText().contains(".btp"))) {
-            mensaje1.setText("Este arhivo no es valido, porfavor use .btp.");
-            mensaje1.setStyle("-fx-text-fill: #B22222");
+            System.out.println("IM HERE");
+            this.mensaje1.setText("Este arhivo no es valido, porfavor use .btp.");
+            //mensaje1.setStyle("-fx-text-fill: #B22222");
         } else {
             if (Files.contains(Archivo1.getText())) {
                 mensaje1.setText("Archivo existente");
                 mensaje1.setStyle("-fx-text-fill: #2BFF00");
-                detectar.setDisable(false);
             } else {
+                System.out.println("NOPE");
                 mensaje1.setText("Este arhivo no existe, porfavor creelo o corrigalo.");
                 mensaje1.setStyle("-fx-text-fill:#B22222");
             }
         }
+        System.out.println("PROBANDO");
+    }
+
+    @FXML
+    void dtct(ActionEvent event) throws IOException {
+        //ac.animation(loader);
+        detectar();
 
     }
 
+    public void detectar() throws IOException {
+        String name = Archivo1.getText().substring(0, Archivo1.getText().length() - 4);
+        boolean verif = dm.verificar(fm.readFile(name, ".btp"));
+        // ac.animation(loader);
+        if (verif) {
+            mensaje1.setText("No se detecto ningun error");
+            ArrayList<String> data = fm.readFile(name, ".txt");
+            StringBuilder string = new StringBuilder();
+            for (String string1 : data) {
+                string.append(string1);
+            }
+            resultado.setText(string.toString());
+        } else {
+            mensaje1.setText("Se detecto almenos 1 error");
+        }
+    }
 
     @FXML
     void actualizar(ActionEvent event) throws IOException {
@@ -223,6 +275,17 @@ public class Deteccion_De_ErroresController implements Initializable {
             }
         });
 
+        /* loader.visibleProperty().addListener(new ChangeListener<Boolean>() {
+            public void changed(ObservableValue ov, Boolean old_val, Boolean new_val) {
+                if (new_val == false) {
+                    try {
+                        detectar();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Deteccion_De_ErroresController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });*/
         ArrayList<String> data = new ArrayList();
         data.add("Hola, mi nombre es karla");
 
@@ -233,7 +296,6 @@ public class Deteccion_De_ErroresController implements Initializable {
             System.out.println("Error en creacion de archivo de mensaje");
         }
 
-        dataManager dm = new dataManager();
         dm.setDataWords(dm.generateDataWords(data, 2));
         dm.setCodeWords(dm.generateCodeWords(dm.getDataWords()));
 

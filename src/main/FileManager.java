@@ -44,11 +44,12 @@ public class FileManager {
         if (!name.equals("files")) {
             System.out.println("SEXO");
             files = readFile("files", ".f");
-            files.add(name + extension);
+            if (!files.contains(name + extension)) {
+                files.add(name + extension);
+            }
             createFile("files", ".f", files, false);
         }
-        
-        
+
         // Close
         pw.close();
         bw.close();

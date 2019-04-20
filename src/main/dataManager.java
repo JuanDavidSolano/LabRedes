@@ -43,8 +43,62 @@ public class dataManager {
             }
             codeWords.add(codeWord.toString());
         }
-
+        codeWords = changeBits(codeWords);
         return codeWords;
+    }
+
+    ArrayList<String> changeBits(ArrayList<String> codeWords) {
+        ArrayList<String> code = new ArrayList();
+        StringBuilder sb = new StringBuilder();
+        int numerocambios = 0;
+        numerocambios = Math.toIntExact(Math.round(Math.random() * (codeWords.size() - 0 + 1)));
+
+        for (String codeWord : codeWords) {
+            char[] data = codeWord.toCharArray();
+            if (numerocambios > 0) {
+                int sw = 0;
+                sw = Math.toIntExact(Math.round(Math.random() * (1 - 0 + 1)));
+                if (sw == 1) {
+                    numerocambios--;
+                    int bit = 0;
+                    bit = Math.toIntExact(Math.round(Math.random() * codeWord.length() + 1));
+
+                    if (data[bit] == '1') {
+                        data[bit] = '0';
+                    } else {
+                        data[bit] = '1';
+                    }
+
+                }
+            }
+            for (int i = 0; i < data.length; i++) {
+                sb.append(data[i]);
+            }
+            code.add(sb.toString());
+        }
+
+        return code;
+    }
+
+    boolean verificar(ArrayList<String> codeWord) {
+        boolean sw = false;
+        for (String string : codeWord) {
+            char[] data = string.toCharArray();
+            int cont = 0;
+            for (int i = 0; i < data.length; i++) {
+                if (data[i] == '1') {
+                    cont++;
+                }
+            }
+            if (cont % 2 == 0) {
+                sw = true;
+                break;
+            } else {
+                sw = false;
+                break;
+            }
+        }
+        return sw;
     }
 
     /*
@@ -60,7 +114,6 @@ public class dataManager {
                 cont++;
             }
         }
-
         return cont;
     }
 

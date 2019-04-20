@@ -5,10 +5,10 @@
  */
 package main;
 
-import com.jfoenix.controls.JFXButton;
 import java.awt.event.ActionListener;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.Timer;
 
@@ -21,15 +21,21 @@ public class animationController {
     int k = 0;
     Timer t;
 
-    void animation(AnchorPane loader) {
+    void animation(Deteccion_De_ErroresController dc, AnchorPane loader) {
+        loader.setVisible(true);
         k = 0;
         t = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 k++;
-                if (k==5) {
-                    t.stop();
-                    loader.setVisible(false);
+                if (k == 5) {
+                    try {
+                        loader.setVisible(false);
+                        t.stop();
+                        dc.prueba();
+                    } catch (IOException ex) {
+                        Logger.getLogger(animationController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });

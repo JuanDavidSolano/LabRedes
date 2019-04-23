@@ -92,7 +92,6 @@ public class dataManager {
             }
             if (cont % 2 == 0) {
                 sw = true;
-                break;
             } else {
                 sw = false;
                 break;

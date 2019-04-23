@@ -42,7 +42,6 @@ public class FileManager {
             bw.newLine();
         }
         if (!name.equals("files")) {
-            System.out.println("SEXO");
             files = readFile("files", ".f");
             if (!files.contains(name + extension)) {
                 files.add(name + extension);

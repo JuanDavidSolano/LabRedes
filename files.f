@@ -4,3 +4,5 @@ msj_2.txt
 msj_2.btp
 msj_3.txt
 msj_3.btp
+msj.txt
+.txt

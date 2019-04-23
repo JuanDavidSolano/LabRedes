@@ -1,6 +1,7 @@
 package main;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import java.awt.event.ActionListener;
@@ -42,13 +43,6 @@ public class Deteccion_De_ErroresController implements Initializable {
     private AnchorPane visualizacion;
 
     @FXML
-    private AnchorPane loader;
-    @FXML
-    private AnchorPane loader1;
-    @FXML
-    private AnchorPane loader2;
-
-    @FXML
     private HBox home;
     @FXML
     private HBox detect;
@@ -65,6 +59,8 @@ public class Deteccion_De_ErroresController implements Initializable {
     private JFXButton detectar;
     @FXML
     private JFXButton validar1;
+    @FXML
+    private JFXButton createF;
 
     @FXML
     private Label fileList;
@@ -72,9 +68,16 @@ public class Deteccion_De_ErroresController implements Initializable {
     private Label mensaje1;
     @FXML
     private Label resultado;
+    @FXML
+    private Label mensajeC;
 
     @FXML
     private JFXTextField Archivo1;
+    @FXML
+    private JFXTextField fileNameC;
+
+    @FXML
+    private JFXTextArea FileContent;
 
     @FXML
     void home(MouseEvent event) {
@@ -174,16 +177,23 @@ public class Deteccion_De_ErroresController implements Initializable {
         System.exit(0);
     }
 
-    animationController ac = new animationController();
-    
     int k = 0;
     Timer t;
 
     @FXML
     void validate(ActionEvent event) throws IOException {
-        System.out.println(Archivo1.getText());
-        loader.setVisible(true);
-        k = 0;
+        ArrayList Files = fm.getFiles();
+        System.out.println(Files);
+        if (Files.contains(Archivo1.getText() + ".btp")) {
+            mensaje1.setText("Archivo existente");
+            mensaje1.setStyle("-fx-text-fill: #2BFF00");
+            detectar.setDisable(false);
+        } else {
+            mensaje1.setText("Este arhivo no existe, porfavor creelo o corrijalo.");
+            mensaje1.setStyle("-fx-text-fill:#B22222");
+        }
+
+        /*k = 0;
         t = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -191,45 +201,31 @@ public class Deteccion_De_ErroresController implements Initializable {
                 if (k == 5) {
                     loader.setVisible(false);
                     t.stop();
+                    mensaje1.setText("Hola");
                 }
             }
         });
         t.start();
-
-        //ac.animation(this, loader);
+         */
     }
 
-    void prueba() throws IOException {
-        ArrayList Files = fm.getFiles();
-        System.out.println(mensaje1.getText());
-        if (!(Archivo1.getText().contains(".btp"))) {
-            System.out.println("IM HERE");
-            this.mensaje1.setText("Este arhivo no es valido, porfavor use .btp.");
-            //mensaje1.setStyle("-fx-text-fill: #B22222");
-        } else {
-            if (Files.contains(Archivo1.getText())) {
-                mensaje1.setText("Archivo existente");
-                mensaje1.setStyle("-fx-text-fill: #2BFF00");
-            } else {
-                System.out.println("NOPE");
-                mensaje1.setText("Este arhivo no existe, porfavor creelo o corrigalo.");
-                mensaje1.setStyle("-fx-text-fill:#B22222");
-            }
+    public void crearFile() {
+        try {
+            String name = fileNameC.getText();
+            ArrayList<String> contenido = new ArrayList();
+            contenido.add(FileContent.getText());
+            fm.createFile(name, ".txt", contenido, false);
+            mensajeC.setText("Archivo creado con exito");
+            mensajeC.setStyle("-fx-text-fill: #2BFF00");
+        } catch (IOException ex) {
+            mensajeC.setText("Error al crear el archivo");
+            mensajeC.setStyle("-fx-text-fill:#B22222");
         }
-        System.out.println("PROBANDO");
-    }
-
-    @FXML
-    void dtct(ActionEvent event) throws IOException {
-        //ac.animation(loader);
-        detectar();
-
     }
 
     public void detectar() throws IOException {
-        String name = Archivo1.getText().substring(0, Archivo1.getText().length() - 4);
+        String name = Archivo1.getText();
         boolean verif = dm.verificar(fm.readFile(name, ".btp"));
-        // ac.animation(loader);
         if (verif) {
             mensaje1.setText("No se detecto ningun error");
             ArrayList<String> data = fm.readFile(name, ".txt");
@@ -240,6 +236,7 @@ public class Deteccion_De_ErroresController implements Initializable {
             resultado.setText(string.toString());
         } else {
             mensaje1.setText("Se detecto almenos 1 error");
+            mensaje1.setStyle("-fx-text-fill:#B22222");
         }
     }
 
@@ -272,20 +269,11 @@ public class Deteccion_De_ErroresController implements Initializable {
                 mensaje1.setText("Porfavor escriba el nombre del archivo que desea usar.");
                 detectar.setDisable(true);
                 mensaje1.setStyle("-fx-text-fill:#ffffff");
+                detectar.setDisable(true);
+                resultado.setText("");
             }
         });
 
-        /* loader.visibleProperty().addListener(new ChangeListener<Boolean>() {
-            public void changed(ObservableValue ov, Boolean old_val, Boolean new_val) {
-                if (new_val == false) {
-                    try {
-                        detectar();
-                    } catch (IOException ex) {
-                        Logger.getLogger(Deteccion_De_ErroresController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-        });*/
         ArrayList<String> data = new ArrayList();
         data.add("Hola, mi nombre es karla");
 

@@ -94,7 +94,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="deteccion" layoutX="79.0" prefHeight="610.0" prefWidth="721.0" styleClass="parent" stylesheets="@style.css">
+      <AnchorPane fx:id="deteccion" layoutX="79.0" prefHeight="610.0" prefWidth="721.0" styleClass="parent" stylesheets="@style.css" visible="false">
          <children>
             <JFXTextField fx:id="Archivo1" focusColor="#2a4b80" layoutX="175.0" layoutY="77.0" prefHeight="42.0" prefWidth="233.0" promptText="Nombre_del_archivo.btp" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="#002453">
                <font>
@@ -152,12 +152,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
-            <Label fx:id="mensaje1" layoutX="77.0" layoutY="149.0" prefHeight="43.0" prefWidth="567.0" text="Porfavor escriba el nombre del archivo que desea usar." textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="mensaje1" alignment="CENTER" layoutX="77.0" layoutY="138.0" prefHeight="43.0" prefWidth="567.0" text="Porfavor escriba el nombre del archivo que desea usar." textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <JFXButton fx:id="detectar" disable="true" layoutX="309.0" layoutY="192.0" onAction="#dtct" prefHeight="42.0" prefWidth="104.0" style="-fx-background-color: #002453;" text="Detectar" textFill="WHITE">
+            <JFXButton fx:id="detectar" disable="true" layoutX="287.0" layoutY="192.0" onAction="#detectar" prefHeight="42.0" prefWidth="104.0" style="-fx-background-color: #002453;" text="Detectar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -243,7 +243,7 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="creacion" layoutX="81.0" layoutY="5.0" prefHeight="610.0" prefWidth="721.0" styleClass="parent" stylesheets="@style.css" visible="false">
+      <AnchorPane fx:id="creacion" layoutX="81.0" layoutY="5.0" prefHeight="610.0" prefWidth="721.0" styleClass="parent" stylesheets="@style.css">
          <children>
             <AnchorPane fx:id="loader2" layoutX="230.0" layoutY="239.0" prefHeight="245.0" prefWidth="262.0" visible="false">
                <children>
@@ -291,22 +291,22 @@
                   </JFXSpinner>
                </children>
             </AnchorPane>
-            <JFXTextField focusColor="#2a4b80" layoutX="107.0" layoutY="83.0" prefHeight="0.0" prefWidth="192.0" promptText="Nombre del archivo" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="#002453">
+            <JFXTextField fx:id="fileNameC" focusColor="#2a4b80" layoutX="107.0" layoutY="83.0" prefHeight="0.0" prefWidth="192.0" promptText="Nombre del archivo" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="#002453">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </JFXTextField>
-            <JFXButton layoutX="309.0" layoutY="85.0" prefHeight="42.0" prefWidth="104.0" style="-fx-background-color: #002453;" text="Crear" textFill="WHITE">
+            <JFXButton fx:id="createF" layoutX="309.0" layoutY="85.0" onAction="#crearFile" prefHeight="42.0" prefWidth="104.0" style="-fx-background-color: #002453;" text="Crear" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
-            <Label layoutX="107.0" layoutY="530.0" prefHeight="43.0" prefWidth="567.0" text="Porfavor escriba el nombre del archivo y el contenido." textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="mensajeC" layoutX="107.0" layoutY="530.0" prefHeight="43.0" prefWidth="567.0" text="Porfavor escriba el nombre del archivo y el contenido." textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <JFXTextArea focusColor="#2a4b80" layoutX="107.0" layoutY="144.0" prefHeight="375.0" prefWidth="567.0" promptText="Digite el contenido del archivo" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="#002453">
+            <JFXTextArea fx:id="FileContent" focusColor="#2a4b80" layoutX="107.0" layoutY="144.0" prefHeight="375.0" prefWidth="567.0" promptText="Digite el contenido del archivo" style="-fx-prompt-text-fill: #ffffff; -fx-text-inner-color: #ffffff;" unFocusColor="#002453">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>

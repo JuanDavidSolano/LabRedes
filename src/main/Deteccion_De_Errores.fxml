@@ -243,7 +243,7 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="creacion" layoutX="81.0" layoutY="5.0" prefHeight="610.0" prefWidth="721.0" styleClass="parent" stylesheets="@style.css">
+      <AnchorPane fx:id="creacion" layoutX="81.0" layoutY="5.0" prefHeight="610.0" prefWidth="721.0" styleClass="parent" stylesheets="@style.css" visible="false">
          <children>
             <AnchorPane fx:id="loader2" layoutX="230.0" layoutY="239.0" prefHeight="245.0" prefWidth="262.0" visible="false">
                <children>

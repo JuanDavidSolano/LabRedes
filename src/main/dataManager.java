@@ -44,15 +44,16 @@ public class dataManager {
             codeWords.add(codeWord.toString());
         }
         codeWords = changeBits(codeWords);
+        System.out.println(codeWords);
         return codeWords;
     }
 
-    ArrayList<String> changeBits(ArrayList<String> codeWords) {
+    public ArrayList<String> changeBits(ArrayList<String> codeWords) {
         ArrayList<String> code = new ArrayList();
         StringBuilder sb = new StringBuilder();
         int numerocambios = 0;
         numerocambios = Math.toIntExact(Math.round(Math.random() * (codeWords.size() - 0 + 1)));
-
+        System.out.println(numerocambios);
         for (String codeWord : codeWords) {
             char[] data = codeWord.toCharArray();
             if (numerocambios > 0) {
@@ -76,7 +77,6 @@ public class dataManager {
             }
             code.add(sb.toString());
         }
-
         return code;
     }
 

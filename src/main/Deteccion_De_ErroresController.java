@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -48,6 +49,8 @@ public class Deteccion_De_ErroresController implements Initializable {
     private AnchorPane visualizacion;
     @FXML
     private AnchorPane loader;
+    @FXML
+    private AnchorPane loader1;
 
     @FXML
     private HBox home;
@@ -67,7 +70,11 @@ public class Deteccion_De_ErroresController implements Initializable {
     @FXML
     private JFXButton validar1;
     @FXML
+    private JFXButton validar2;
+    @FXML
     private JFXButton createF;
+    @FXML
+    private JFXButton corregir;
 
     @FXML
     private Label fileList;
@@ -76,12 +83,18 @@ public class Deteccion_De_ErroresController implements Initializable {
     @FXML
     private Label resultado;
     @FXML
+    private Label resultado2;
+    @FXML
     private Label mensajeC;
+    @FXML
+    private Label mensajeF;
 
     @FXML
     private JFXTextField Archivo1;
     @FXML
     private JFXTextField fileNameC;
+    @FXML
+    private JFXTextField nombre2;
 
     @FXML
     private JFXTextArea FileContent;
@@ -197,7 +210,6 @@ public class Deteccion_De_ErroresController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 seconds--;
-                System.out.println(seconds);
                 if (seconds == 0) {
                     try {
                         time.stop();
@@ -225,7 +237,6 @@ public class Deteccion_De_ErroresController implements Initializable {
         time.playFromStart();
 
     }
-    
 
     public void crearFile() {
         try {
@@ -284,6 +295,56 @@ public class Deteccion_De_ErroresController implements Initializable {
         }
 
         fileList.setText(text.toString());
+    }
+
+    @FXML
+    void validar() {
+        Timeline time = new Timeline();
+        time.setCycleCount(Timeline.INDEFINITE);
+        loader1.setVisible(true);
+        validar2.setDisable(true);
+        KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                seconds--;
+                if (seconds == 0) {
+                    try {
+                        time.stop();
+                        ArrayList Files = fm.getFiles();
+                        seconds = 2;
+                        loader1.setVisible(false);
+                        validar2.setDisable(false);
+                        if (Files.contains(nombre2.getText() + ".txt")) {
+                            mensajeF.setText("Archivo existente");
+                            mensajeF.setStyle("-fx-text-fill: #2BFF00");
+                            corregir.setDisable(false);
+                        } else {
+                            mensajeF.setText("Este arhivo no existe, porfavor creelo o corrijalo.");
+                            mensajeF.setStyle("-fx-text-fill:#B22222");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Deteccion_De_ErroresController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            }
+        });
+        time.getKeyFrames().add(frame);
+        time.playFromStart();
+    }
+
+    @FXML
+    void corregir() throws IOException {
+        mensajeF.setText("Mensaje Corregido");
+        dm.Correccion(nombre2.getText());
+        fm.readFile(nombre2.getText(), ".ham");
+        ArrayList<String> txt = fm.readFile(nombre2.getText(), ".txt");
+        StringBuilder sb = new StringBuilder();
+        for (String t : txt) {
+            sb.append(t).append("\n");
+        }
+        resultado2.setText(sb.toString());
     }
 
     @Override

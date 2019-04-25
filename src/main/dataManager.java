@@ -1,5 +1,7 @@
 package main;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /*
@@ -198,4 +200,63 @@ public class dataManager {
 
         return DataWords;
     }
+
+    public void Correccion(String me) throws IOException {
+        FileManager f = new FileManager();
+        ArrayList<String> uniondata = new ArrayList();
+        ArrayList<String> data2 = new ArrayList();
+        ArrayList<String> data = new ArrayList();
+        data2 = f.readFile(me, ".txt");
+        data = generateDataWords(data2, 2);
+        f.createFile(me, ".ham", uniondata, false);
+        for (int jj = 0; jj < data.size(); jj++) {
+            String msg = data.get(jj);
+            int r = 0, m = msg.length();
+            while (true) {
+                if (m + r + 1 <= Math.pow(2, r)) {
+                    break;
+                }
+                r++;
+            }
+            int transLength = msg.length() + r, temp = 0, temp2 = 0, j = 0;
+            int transMsg[] = new int[transLength + 1];
+            for (int i = 1; i <= transLength; i++) {
+                temp2 = (int) Math.pow(2, temp);
+                if (i % temp2 != 0) {
+                    transMsg[i] = Integer.parseInt(Character.toString(msg.charAt(j)));
+                    j++;
+                } else {
+                    temp++;
+                }
+            }
+
+            for (int i = 0; i < r; i++) {
+                int smallStep = (int) Math.pow(2, i);
+                int bigStep = smallStep * 2;
+                int start = smallStep, checkPos = start;
+                while (true) {
+                    for (int k = start; k <= start + smallStep - 1; k++) {
+                        checkPos = k;
+                        System.out.print(checkPos + " ");
+                        if (k > transLength) {
+                            break;
+                        }
+                        transMsg[smallStep] ^= transMsg[checkPos];
+                    }
+                    if (checkPos > transLength) {
+                        break;
+                    } else {
+                        start = start + bigStep;
+                    }
+                }
+            }
+            String union = "";
+            for (int i = 1; i <= transLength; i++) {
+                union = transMsg[i] + union;
+            }
+            uniondata.add(union);
+        }
+        f.createFile(me, ".ham", uniondata, false);
+    }
+
 }
